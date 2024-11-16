@@ -61,6 +61,7 @@ def generate_graph(size, density)
   end
 
   size.times do |i|
+    # Для поточної вершини Stop_i перевіряються всі наступні вершини Stop_j щоб уникнути дублювання ребер
     (i+1).upto(size-1) do |j|
       if rand < density
         graph["Stop_#{i}"]["Stop_#{j}"] = rand(1..1000)
