@@ -71,6 +71,7 @@ def generate_graph(size, density)
   graph
 end
 
+if __FILE__ == $0
 puts "Бенчмарк для різних випадків"
 
 # Пошук шляху між A та E
@@ -155,7 +156,7 @@ Benchmark.bm do |x|
 
   # Великий граф (30 зупинок, низька щільність)
   x.report("Large Graph (30 nodes, 0.2 density) - Popular Path:") do
-    result = find_most_popular_path(large_graph_small_dens, "Stop_0", "29")
+    result = find_most_popular_path(large_graph_small_dens, "Stop_0", "Stop_29")
     puts "Найбільше пасажирів між Stop_0 та 29: #{result[:max_passengers]}, Шлях: #{result[:path].join(' -> ')}"
   end
 
@@ -166,8 +167,8 @@ Benchmark.bm do |x|
 
   # Великий граф (30 зупинок, середня щільність)
   x.report("Large Graph (30 nodes, 0.5 density) - Popular Path:") do
-    result = find_most_popular_path(large_graph_avg_dens, "Stop_0", "29")
-    puts "Найбільше пасажирів між Stop_0 та 29: #{result[:max_passengers]}, Шлях: #{result[:path].join(' -> ')}"
+    result = find_most_popular_path(large_graph_avg_dens, "Stop_0", "Stop_29")
+    puts "Найбільше пасажирів між Stop_0 та Stop_29: #{result[:max_passengers]}, Шлях: #{result[:path].join(' -> ')}"
   end
 
   x.report("Large Graph (30 nodes, 0.5 density) - Overall Popular Path:") do
@@ -177,12 +178,13 @@ Benchmark.bm do |x|
 
   # Великий граф (30 зупинок, висока щільність)
   x.report("Large Graph (30 nodes, 0.8 density) - Popular Path:") do
-    result = find_most_popular_path(large_graph, "Stop_0", "29")
-    puts "Найбільше пасажирів між Stop_0 та 29: #{result[:max_passengers]}, Шлях: #{result[:path].join(' -> ')}"
+    result = find_most_popular_path(large_graph, "Stop_0", "Stop_29")
+    puts "Найбільше пасажирів між Stop_0 та Stop_29: #{result[:max_passengers]}, Шлях: #{result[:path].join(' -> ')}"
   end
 
   x.report("Large Graph (30 nodes, 0.8 density) - Overall Popular Path:") do
     overall_result = find_most_popular_overall(large_graph)
     puts "Найбільше пасажирів загалом: #{overall_result[:max_passengers]}, Шлях: #{overall_result[:path].join(' -> ')}"
   end
+end
 end
